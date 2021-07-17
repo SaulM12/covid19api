@@ -1,0 +1,61 @@
+<div class="container" fxFlex="100" [ngStyle]="{'background-image': hora === 'n' ? 'url('+fondo+')' : 'url('+fondo+')'}">
+    <div *ngIf="clima" fxLayoutAlign="center center" fxLayout="column">
+        <mat-card>
+            <div fxLayoutAlign="center center" class="titulo" fxLayout="column">
+                <h3>Pronóstico del Clima</h3>
+                por intervalos de 3 horas
+            </div>
+            <p></p>
+            <form #formCat="ngForm" fxLayout="column">
+                <div class="info" fxLayoutAlign="center center" fxLayout="column">
+                    <mat-form-field appearance="fill" fxFlex="10">
+                        <mat-label>Ciudad</mat-label>
+                        <input #focus matInput #nombre="ngModel" placeholder="Ej. Lima" [(ngModel)]="clima.name" name="name" autofocus required>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" fxFlex="60">
+                        <mat-label># Intervalos</mat-label>
+                        <input matInput #nombre="ngModel" placeholder="Ej. 4" [(ngModel)]="clima.cnt" name="cnt" required type="number">
+                    </mat-form-field>
+                </div>
+                <div class="botones" fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="80" fxLayoutAlign="center center">
+                        <button mat-raised-button class="guardar" fxFlex="50" type="submit" (click)="getClimaDiario(clima.name, clima.cnt)">Buscar</button>
+                        <button mat-raised-button color="primary" fxFlex="50" class="guardar2" type="submit" [disabled]="formCat.invalid" (click)="nuevaBusqueda()">Nueva Búsqueda</button>
+                    </div>
+                </div>
+                <div *ngFor="let coord of climaDiario" fxLayoutAlign="center center" fxFlex="80">
+                    <button class="ubicacion" fxFlex="80" *ngIf="clima.name && clima.cnt" mat-raised-button color="primary" type="submit" (click)="openCoordenadas(coord.city.coord.lat, 
+                    coord.city.coord.lon, coord.city.name, coord.city.country)">Mostrar Ubicación</button>
+                </div>
+
+            </form>
+        </mat-card>
+
+        <div *ngIf="climaDiario" fxLayout="row wrap">
+            <div *ngFor="let item of climaDiario; let i = index" fxLayout="row" fxLayout="row wrap">
+                <div *ngFor="let lista of item.list" fxLayoutAlign="center center">
+                    <mat-card class="cartas2" (click)="openDialog(lista.dt, item.city.name,item.city.country, lista.main.temp_min, lista.main.temp_max,
+                lista.main.feels_like, lista.main.humidity, lista.main.pressure,lista.wind.speed,
+                lista.weather[0].description, lista.main.temp, lista.weather[0].icon, lista.dt_txt,
+                item.city.sunrise, item.city.sunset)" [disableClose]="false" fxLayout="column" fxLayoutAlign="center center">
+                        <div class="contenido hora">
+                            <h3>{{lista.sys.pod}}</h3>
+                        </div>
+                        <div class="contenido">
+                            <img src="http://openweathermap.org/img/wn/{{lista.weather[0].icon}}@2x.png" alt="">
+                        </div>
+                        <div class="contenido temperatura">
+                            <h3>{{lista.main.temp}}°C</h3>
+                        </div>
+                        <div class="contenido dia">
+                            <h2>{{lista.dt}}</h2>
+                        </div>
+                        <div class="contenido ciudad">
+                            <h5>{{item.city.country}}</h5>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

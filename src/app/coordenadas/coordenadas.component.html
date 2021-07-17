@@ -1,0 +1,43 @@
+<h1 mat-dialog-title> <i class="fas fa-map-marker-alt"></i> Geolocalización</h1>
+<mat-dialog-content>
+    <div fxLayout="column">
+        <div fxLayout="column" fxFlex="100">
+            <div class="pais" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <i class="fas fa-chevron-right"></i>
+                    <h3>País</h3>
+                </div>
+                <h3 fxLayoutAlign="center center">{{data.country}}</h3>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="ciudad" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <i class="fas fa-chevron-right"></i>
+                    <h3>Ciudad</h3>
+                </div>
+                <h3 fxLayoutAlign="center center">{{data.name}}</h3>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="longitud" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayoutAlign="start" fxLayoutAlign="center center">
+                    <i class="fas fa-chevron-right"></i>
+                    <h3>Latitud</h3>
+                </div>
+                <h3 fxLayoutAlign="center center">{{data.lat}}</h3>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="latitud" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <i class="fas fa-chevron-right"></i>
+                    <h3>Longitud</h3>
+                </div>
+                <h3 fxLayoutAlign="center center">{{data.lon}}</h3>
+            </div>
+
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Cerrar</button>
+</mat-dialog-actions>

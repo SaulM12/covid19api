@@ -1,0 +1,79 @@
+<h1 mat-dialog-title>
+    El tiempo en la ciudad de {{data.name}}, {{data.country}}</h1>
+
+<mat-dialog-content>
+    <div fxLayout="column">
+        <h4>{{data.description}}</h4>
+        <div class="temp" fxFlex="100" fxLayout="row">
+            <div fxFlex="60" fxLayoutAlign="start" fxLayout="row">
+                <h2>{{data.temp}} °C</h2> <img src="http://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="">
+            </div>
+            <div class="sunrise" fxLayoutAlign="end end" fxFlex="40" fxLayout="column">
+                <div fxLayoutAlign="center center" matTooltip="Amanecer" matTooltipClass="example-tooltip-red" matTooltipPosition="left">
+                    <img src="https://github.com/MPerez2021/clima-app/blob/main/src/assets/sunrise.png?raw=true"> {{data.sunrise}} ECT
+                </div>
+                <div fxLayoutAlign="center center" matTooltip="Atardecer" matTooltipClass="example-tooltip-red" matTooltipPosition="left">
+                    <img src="https://github.com/MPerez2021/clima-app/blob/main/src/assets/sunset.png?raw=true"> {{data.sunset}} ECT
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxFlex="100">
+            <div class="minMax" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayoutAlign="start">
+                    <mat-icon fxLayoutAlign="center center" fontSet="fas" class="fontawesome" fontIcon="fa-temperature-low"></mat-icon>
+                    <h3>Min / Max</h3>
+                </div>
+                <h3>{{data.temp_min}} / {{data.temp_max}} °C</h3>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="feelsLike" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayout="row">
+                    <mat-icon fxLayoutAlign="center center" class="fontawesome" fontSet="fas" fontIcon="fa-temperature-low"></mat-icon>
+                    <h3>Sensación térmica</h3>
+                </div>
+                <h3>{{data.feels_like}} °C</h3>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
+            <div class="humedad" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayout="row">
+                    <mat-icon>water_drop</mat-icon>
+                    <h3>Humedad</h3>
+                </div>
+                <h3>{{data.humidity}}%</h3>
+            </div>
+
+            <div class="presion" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayout="row">
+                    <mat-icon>import_export</mat-icon>
+                    <h3>Presion Atmosférica</h3>
+                </div>
+                <h3>{{data.pressure}} hPa</h3>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxFlex="100">
+            <div class="viento" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayoutAlign="start">
+                    <mat-icon>air</mat-icon>
+                    <h3>viento</h3>
+                </div>
+                <h3>{{data.speed}} m/s</h3>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="hora" fxFlex="50" fxLayoutAlign="space-between center">
+                <div fxLayout="row">
+                    <mat-icon>schedule</mat-icon>
+                    <h3>Fecha</h3>
+                </div>
+                <h3>{{data.dt_txt}}</h3>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Cerrar</button>
+</mat-dialog-actions>

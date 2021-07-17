@@ -1,0 +1,229 @@
+<div class="container" fxLayout="row wrap" style="background-color: rgb(0, 0, 0); min-height: 180vh;">
+    <div fxFlex="100" style="background-color: rgb(0, 0, 0);" fxLayout="column">
+        <div fxFlex="15" style="background-color: rgb(0, 6, 24); margin-top: 1rem;" fxLayout="row"
+            fxLayoutAlign="center center">
+            <div fxFlex='80' style="background-color: rgb(0, 6, 24);" fxLayoutAlign="center center">
+                <p style="font-weight:bolder; font-size: 2rem; color: white;">Estadísticas COVID-19 - Coronavirus</p>
+            </div>
+        </div>
+        <div fxFlex="20" style="background-color: rgb(0, 6, 24);" fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex='100' style="background-color: rgb(0, 22, 88); padding-top: 0.5rem;" fxLayoutAlign="space-around center">
+                <div  fxFlex="20" >
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Seleccione un pais</mat-label>
+                        <input type="text" placeholder="Seleccione uno" aria-label="Number" matInput
+                            [formControl]="myControl" [matAutocomplete]="auto" style="color: white;"
+                            [(ngModel)]="country">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filterOptions | async" [value]="option.code">
+                                {{option.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Seleccione una fecha</mat-label>
+                        <input matInput [matDatepicker]="picker" style="color: white;" [(ngModel)]="date"
+                            [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div style="background-color: rgb(0, 6, 24)" fxFlex="10">
+                    <button mat-raised-button color="primary" (click)="buscar(country,date)">Buscar datos por fecha</button>
+                </div>
+                <div style="background-color: rgb(0, 6, 24)" fxFlex="10">
+                    <button mat-raised-button color="primary" (click)="getTotal(country)">Buscar datos totales</button>
+                </div>
+            </div>
+        </div>
+        <div style="background-color: rgb(0, 0, 0); margin-top: 0.8rem;" fxFlex='10' *ngIf="data && !totales"
+            fxLayoutAlign="space-around start" [@inOutAnimation]>
+            <div fxFlex='100' fxLayoutAlign="space-around start">
+                <p style="font-weight:bold; font-size: 1.6rem; color: rgb(143, 143, 143);">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">flag</mat-icon> {{data.country}}
+                </p>
+                <p style="font-weight:bold; font-size: 1.6rem; color: rgb(179, 179, 179);">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">today</mat-icon> {{data.date}}
+                </p>
+            </div>
+        </div>
+        <div style="background-color: rgb(0, 0, 0);" fxFlex='60' fxLayout="row wrap" *ngIf="data && !totales"
+            fxLayoutAlign="space-around start" [@inOutAnimation]>
+            <div fxFlex='22' class="bordes">
+                <mat-card class="example-card">
+                    <mat-card-header fxLayoutAlign="space-around start">
+                        <img src="https://d51h1y0hva8v.cloudfront.net/images/default-source/icon/icono-persona-enferma.png?sfvrsn=56e71f05_1"
+                            alt="Photo of a Shiba Inu" width="25%" height="auto">
+                        <mat-card-title style="color: rgb(255, 85, 85);">Casos de covid activos</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-card-subtitle>
+                            <p style="font-size: 2rem;color:rgb(255, 85, 85);">{{data.provinces[0].active}}</p> Casos
+                            actualmente activos en {{data.country}}
+                            el {{data.date}}
+                        </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div fxFlex='22' class="bordes">
+                <mat-card class="example-card">
+                    <mat-card-header fxLayoutAlign="space-around start">
+                        <img src="https://bioseguridad.net/wp-content/uploads/2020/03/Riesgo.png"
+                            alt="Photo of a Shiba Inu" width="25%" height="auto">
+                        <mat-card-title style="color: rgb(252, 164, 64);">Casos de covid confirmados</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-card-subtitle>
+                            <p style="font-size: 2rem;color:rgb(252, 164, 64);">{{data.provinces[0].confirmed}}</p>
+                            Casos confirmados en {{data.country}}
+                            el {{data.date}}
+                        </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div fxFlex='22' class="bordes">
+                <mat-card class="example-card">
+                    <mat-card-header fxLayoutAlign="space-around start">
+                        <img src="https://cdn3.iconfinder.com/data/icons/meeting-time-add-on-flat/48/Time_-_Add_On-33-512.png"
+                            alt="Photo of a Shiba Inu" width="25%" height="auto">
+                        <mat-card-title style="color: rgb(255, 73, 28);">Muertes por covid</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-card-subtitle>
+                            <p style="font-size: 2rem;color:rgb(255, 73, 28);">{{data.provinces[0].deaths}}</p> muertes
+                            en {{data.country}}
+                            el {{data.date}} por COVID
+                        </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div fxFlex='22' class="bordes">
+                <mat-card class="example-card">
+                    <mat-card-header fxLayoutAlign="space-around start">
+                        <img src="https://images.vexels.com/media/users/3/193297/isolated/preview/4752adfc1ac1732ee4ebb62297016c15-icono-de-dibujos-animados-de-covid-19-by-vexels.png"
+                            alt="Photo of a Shiba Inu" width="25%" height="auto">
+                        <mat-card-title style="color: rgb(0, 175, 53);">Recuperados de covid</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-card-subtitle>
+                            <p style="font-size: 2rem;color:rgb(0, 175, 53);">{{data.provinces[0].recovered}}</p>
+                            Recuperados de la enfermedad en {{data.country}}
+                            el {{data.date}}
+                        </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <!-- Historicas -->
+        <div style="background-color: rgb(0, 0, 0);margin-top: 1rem;" fxFlex='10' *ngIf="totales && data2"
+            fxLayoutAlign="space-around start" [@inOutAnimation]>
+            <div fxFlex='100' fxLayoutAlign="space-around start">
+                <p style="font-weight:bold; font-size: 1.6rem; color: rgb(143, 143, 143);">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">flag</mat-icon> {{data2.country}}
+                </p>
+                <p style="font-weight:bold; font-size: 1.6rem; color: rgb(179, 179, 179);">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">today</mat-icon> Estadísticas
+                    totales
+                </p>
+            </div>
+        </div>
+        <div style="background-color: rgb(0, 0, 0);" fxFlex='60' fxLayout="row wrap" *ngIf="totales && data2"
+            fxLayoutAlign="space-around start" [@inOutAnimation]> 
+            <div fxFlex='22' class="bordes">
+                <!-- criticos -->
+                <mat-card class="example-card">
+                    <mat-card-header fxLayoutAlign="space-around start">
+                        <img src="https://i.pinimg.com/originals/e2/ca/37/e2ca370d5fa54f27953e4f78cbfb9ee9.png"
+                            alt="Photo of a Shiba Inu" width="25%" height="auto">
+                        <mat-card-title style="color: rgb(255, 85, 85);">Casos críticos de covid</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-card-subtitle>
+                            <p style="font-size: 2rem;color:rgb(255, 85, 85);">{{data2.critical}}</p> Última
+                            actualizacion: {{data2.lastUpdate | date:'yyyy-MM-dd'}}
+                        </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!-- confirmados -->
+            <div fxFlex='22' class="bordes">
+                <mat-card class="example-card">
+                    <mat-card-header fxLayoutAlign="space-around start">
+                        <img src="https://cdn.pixabay.com/photo/2020/05/30/16/10/covid-19-5239417_960_720.png"
+                            alt="Photo of a Shiba Inu" width="25%" height="auto">
+                        <mat-card-title style="color: rgb(252, 164, 64);">Casos totales</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-card-subtitle>
+                            <p style="font-size: 2rem;color:rgb(252, 164, 64);">{{data2.confirmed}}</p> Última
+                            actualizacion: {{data2.lastUpdate | date:'yyyy-MM-dd'}}
+                        </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!-- confirmados -->
+            <div fxFlex='22' class="bordes">
+                <mat-card class="example-card">
+                    <mat-card-header fxLayoutAlign="space-around start">
+                        <img src="https://image.flaticon.com/icons/png/512/214/214809.png" alt="Photo of a Shiba Inu"
+                            width="25%" height="auto">
+                        <mat-card-title style="color: rgb(255, 73, 28);">Muertes totales</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-card-subtitle>
+                            <p style="font-size: 2rem;color:rgb(255, 73, 28);">{{data2.deaths}}</p>
+                            Última actualizacion: {{data2.lastUpdate | date:'yyyy-MM-dd'}}
+                        </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div fxFlex='22' class="bordes">
+                <mat-card class="example-card">
+                    <mat-card-header fxLayoutAlign="space-around start">
+                        <img src="https://images.vexels.com/media/users/3/193297/isolated/preview/4752adfc1ac1732ee4ebb62297016c15-icono-de-dibujos-animados-de-covid-19-by-vexels.png"
+                            alt="Photo of a Shiba Inu" width="25%" height="auto">
+                        <mat-card-title style="color: rgb(0, 175, 53);">Recuperados totales</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-card-subtitle>
+                            <p style="font-size: 2rem;color:rgb(0, 175, 53);">{{data2.recovered}}</p> Última
+                            actualizacion: {{data2.lastUpdate | date:'yyyy-MM-dd'}}
+                        </mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div style="background-color: rgb(0, 0, 0);margin-top: 1rem;" fxFlex='10' *ngIf="data"
+            fxLayoutAlign="space-around start">
+            <div fxFlex='100' fxLayoutAlign="space-around start">
+                <p style="font-weight:bold; font-size: 1.6rem; color: rgb(179, 179, 179);">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">today</mat-icon> Mapa
+                </p>
+            </div>
+        </div>
+    </div>
+    <div fxFlex=100 style="background-color: rgb(31, 31, 31); height: 60vh;" fxLayoutAlign="center center">
+        <div id="map" fxFlex='80'>
+        </div>
+    </div>
+    <div>

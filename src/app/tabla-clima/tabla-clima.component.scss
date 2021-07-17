@@ -1,0 +1,71 @@
+::ng-deep .mat-dialog-container {
+    width: 50vw !important;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(5, 135, 176, 1) 73%, rgba(0, 212, 255, 1) 100%);
+    /* background: rgb(36, 5, 165);
+    background: linear-gradient(180deg, rgba(36, 5, 165, 1) 0%, rgb(90, 5, 176, 1) 44%, rgba(207, 43, 200, 1) 100%);*/
+    /*background: rgb(61, 58, 145);
+    background: linear-gradient(180deg, rgba(61, 58, 145, 1) 0%, rgba(131, 46, 119, 1) 57%, rgba(160, 102, 175, 1) 100%); */
+    /*     background: rgb(56, 56, 221);
+    background: linear-gradient(180deg, rgba(56, 56, 221, 1) 6%, rgba(173, 20, 160, 1) 49%, rgba(255, 255, 255, 1) 100%); */
+    color: white;
+}
+
+::ng-depp .mat-divider {
+    color: white;
+    background: white;
+    background-color: white;
+}
+
+.minMax,
+.feelsLike,
+.humedad,
+.presion,
+.nivelMar,
+.hora,
+.viento,
+.descripcion {
+    padding-right: 20px;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+::ng-deep .mat-h2,
+ ::ng-deep .mat-title,
+::ng-deep .mat-typography ::ng-deep h2 {
+    font-size: 3rem !important;
+    margin-top: 30px;
+    margin-bottom: 30px !important;
+}
+
+::ng-deep .mat-h2,
+ ::ng-deep .mat-title,
+::ng-deep .mat-typography ::ng-deep h3 {
+    margin-bottom: 0px;
+}
+
+.mat-icon {
+    margin-right: 10px;
+}
+
+.fontawesome {
+    font-size: 1rem;
+}
+
+::ng-deep .mat-h4,
+::ng-deep .mat-subheading-1,
+::ng-deep .mat-typography ::ng-deep h4 {
+    text-transform: capitalize !important;
+    font-size: 1rem;
+}
+
+.sunrise {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.sunrise img {
+    height: 40px;
+    width: 40px;
+    padding-right: 10px;
+}
