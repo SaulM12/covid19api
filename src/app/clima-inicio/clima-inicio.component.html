@@ -1,4 +1,4 @@
-<div class="container" fxFlex="100" [ngStyle]="{'background-image': hora === 'n' ? 'url('+fondo+')' : 'url('+fondo+')'}">
+<div class="container" fxFlex="100" [ngStyle]="{'background-image': hora === 'n' ? 'url('+fondo+')' : 'url('+fondo+')'}" [@inOutAnimation]>
     <div *ngIf="clima" fxLayoutAlign="center center" fxLayout="column">
         <mat-card>
             <div fxLayoutAlign="center center" class="titulo" fxLayout="column">

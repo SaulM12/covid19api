@@ -1,12 +1,12 @@
-<div class="container" fxLayout="row wrap" style="background-color: rgb(0, 0, 0); min-height: 180vh;">
-    <div fxFlex="100" style="background-color: rgb(0, 0, 0);" fxLayout="column">
-        <div fxFlex="15" style="background-color: rgb(0, 6, 24); margin-top: 1rem;" fxLayout="row" fxLayoutAlign="center center">
-            <div fxFlex='80' style="background-color: rgb(0, 6, 24);" fxLayoutAlign="center center">
-                <p style="font-weight:bolder; font-size: 2rem; color: white;">Estadísticas COVID-19 - Coronavirus</p>
+<div class="container color" fxLayout="row wrap" style=" min-height: 100vh;" [@inOutAnimation]>
+    <div fxFlex="100" style=""fxLayout="column">
+        <div fxFlex="15" style=" background-color: #000000; " fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex='80' style="background-color: black;"  fxLayoutAlign="center center">
+                <p style=" font-size: 2rem; color: white;">Consultar cifras de Covid-19 por país</p>
             </div>
         </div>
-        <div fxFlex="20" style="background-color: rgb(0, 6, 24);" fxLayout="row" fxLayoutAlign="center center">
-            <div fxFlex='100' style="background-color: rgb(0, 22, 88); padding-top: 0.5rem;" fxLayoutAlign="space-around center">
+        <div fxFlex="20" style=" background-color: #000000;" fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex='100'  fxLayoutAlign="space-around center">
                 <div fxFlex="20">
                     <mat-form-field class="example-full-width">
                         <mat-label>Seleccione un pais</mat-label>
@@ -26,25 +26,25 @@
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
-                <div style="background-color: rgb(0, 6, 24)" fxFlex="10">
+                <div style="background-color: #191919" fxFlex="10">
                     <button mat-raised-button color="primary" (click)="buscar(country,date)">Buscar datos por fecha</button>
                 </div>
-                <div style="background-color: rgb(0, 6, 24)" fxFlex="10">
+                <div style="background-color: #191919" fxFlex="10">
                     <button mat-raised-button color="primary" (click)="getTotal(country)">Buscar datos totales</button>
                 </div>
             </div>
         </div>
-        <div style="background-color: rgb(0, 0, 0); margin-top: 0.8rem;" fxFlex='10' *ngIf="data && !totales" fxLayoutAlign="space-around start" [@inOutAnimation]>
+        <div  style=" margin-top: 0.8rem;" fxFlex='10' *ngIf="data && !totales" fxLayoutAlign="space-around start" [@inOutAnimation]>
             <div fxFlex='100' fxLayoutAlign="space-around start">
-                <p style="font-weight:bold; font-size: 1.6rem; color: rgb(143, 143, 143);">
+                <p style="font-weight:500; font-size: 1.6rem; color: rgb(231, 231, 231);">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">flag</mat-icon> {{data.country}}
                 </p>
-                <p style="font-weight:bold; font-size: 1.6rem; color: rgb(179, 179, 179);">
+                <p style="font-weight:500; font-size: 1.6rem; color: rgb(230, 230, 230);">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">today</mat-icon> {{data.date}}
                 </p>
             </div>
         </div>
-        <div style="background-color: rgb(0, 0, 0);" fxFlex='60' fxLayout="row wrap" *ngIf="data && !totales" fxLayoutAlign="space-around start" [@inOutAnimation]>
+        <div class="color2" fxFlex='60' fxLayout="row wrap" *ngIf="data && !totales" fxLayoutAlign="space-around start" [@inOutAnimation]>
             <div fxFlex='22' class="bordes">
                 <mat-card class="example-card">
                     <mat-card-header fxLayoutAlign="space-around start">
@@ -110,7 +110,7 @@
             </div>
         </div>
         <!-- Historicas -->
-        <div style="background-color: rgb(0, 0, 0);margin-top: 1rem;" fxFlex='10' *ngIf="totales && data2" fxLayoutAlign="space-around start" [@inOutAnimation]>
+        <div style="background-color: #191919;margin-top: 1rem;" fxFlex='10' *ngIf="totales && data2" fxLayoutAlign="space-around start" [@inOutAnimation]>
             <div fxFlex='100' fxLayoutAlign="space-around start">
                 <p style="font-weight:bold; font-size: 1.6rem; color: rgb(143, 143, 143);">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">flag</mat-icon> {{data2.country}}
@@ -120,7 +120,7 @@
                 </p>
             </div>
         </div>
-        <div style="background-color: rgb(0, 0, 0);" fxFlex='60' fxLayout="row wrap" *ngIf="totales && data2" fxLayoutAlign="space-around start" [@inOutAnimation]>
+        <div class="color2" fxFlex='60' fxLayout="row wrap" *ngIf="totales && data2" fxLayoutAlign="space-around start" [@inOutAnimation]>
             <div fxFlex='22' class="bordes">
                 <!-- criticos -->
                 <mat-card class="example-card">
@@ -187,16 +187,16 @@
                 </mat-card>
             </div>
         </div>
-        <div style="background-color: rgb(0, 0, 0);margin-top: 1rem;" fxFlex='10' *ngIf="data" fxLayoutAlign="space-around start">
-            <div fxFlex='100' fxLayoutAlign="space-around start">
-                <p style="font-weight:bold; font-size: 1.6rem; color: rgb(179, 179, 179);">
-                    <mat-icon aria-hidden="false" aria-label="Example home icon">today</mat-icon> Mapa
+        <div class="menu2"style=" margin-top: 1rem; padding: 1rem" fxFlex='5' *ngIf="data" fxLayoutAlign="space-around start">
+            <div fxFlex='100' fxLayoutAlign="center center">
+                <p style="font-weight:500; font-size: 1.5rem; color: rgb(179, 179, 179);">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">location_on</mat-icon> Mapa con información de los paises consultados previamente
                 </p>
             </div>
         </div>
     </div>
 
-    <div fxFlex=100 style="background-color: rgb(31, 31, 31); height: 60vh;" fxLayoutAlign="center center">
+    <div fxFlex=100 class="color2"style="background-color: #131313; height: 60vh; margin-top: 2rem; padding:0.5rem;" fxLayoutAlign="center center">
         <div id="map" fxFlex='80'></div>
 
     </div>

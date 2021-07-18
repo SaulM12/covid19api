@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { ClimaService } from './../servicio/clima.service';
 import { ClimaDiario } from './../modelos/clima-diario';
 import { TablaClimaComponent } from './../tabla-clima/tabla-clima.component';
@@ -32,7 +33,23 @@ export interface DialogData {
 @Component({
   selector: 'app-clima-inicio',
   templateUrl: './clima-inicio.component.html',
-  styleUrls: ['./clima-inicio.component.scss']
+  styleUrls: ['./clima-inicio.component.scss'],
+  animations: [
+    trigger(
+      'inOutAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({ opacity: 0 }),
+            animate('0.9s ease-out',
+              style({ opacity: 1 }))
+          ]
+        ),
+
+      ]
+    ),
+  ]
 })
 export class ClimaInicioComponent implements OnInit {
   fondo: string = 'https://images8.alphacoders.com/937/thumb-1920-937708.jpg'
