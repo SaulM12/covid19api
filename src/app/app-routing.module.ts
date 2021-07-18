@@ -5,9 +5,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: MenuComponent },
-  {path:'covid', component: HomeComponent},
-  {path:'clima',component: ClimaInicioComponent}
+  {
+    path: '',
+    redirectTo: 'inicio',
+    pathMatch: 'full'
+  },
+  { path: 'inicio', component: MenuComponent },
+  { path: 'covid', component: HomeComponent },
+  { path: 'clima', component: ClimaInicioComponent }
 ];
 
 @NgModule({

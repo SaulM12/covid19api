@@ -1,0 +1,138 @@
+/* .container {
+    min-height: 100vh;
+    background: rgb(76, 137, 189);
+    background: radial-gradient(circle, rgba(76, 137, 189, 1) 0%, rgba(54, 73, 106, 1) 49%, rgba(19, 19, 20, 1) 100%);
+}
+ */
+
+::ng-deep .portada {
+    background: rgb(76, 137, 189);
+    background: linear-gradient(343deg, rgba(76, 137, 189, 1) 0%, rgba(35, 74, 108, 1) 52%, rgba(19, 19, 20, 1) 100%);
+    position: relative;
+    min-height: 40vh;
+}
+
+.tituloGeneral h2 {
+    font-size: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    margin-left: 20px;
+}
+
+.imagen img {
+    position: absolute;
+    border-radius: 20px;
+    object-fit: cover;
+    width: 500px;
+    height: 400px;
+    top: 20%;
+    right: 5%;
+}
+
+.mapaCovid {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    box-shadow: -15px -10px 0 0 rgba(0, 0, 0, .1) inset, -30px -15px 0 0 rgba(0, 0, 0, .1) inset, 5px 5px 0 0 rgba(255, 255, 255, .2) inset, 0px 5px 15px #888;
+    ;
+    background-image: url('../../assets/mapamundi.jpg');
+    background-size: cover;
+    background-repeat: none;
+    animation: tierra-girando 20s infinite linear;
+}
+
+@keyframes tierra-girando {
+    0% {
+        background-position: left center;
+    }
+    100% {
+        background-position: -900px center;
+    }
+}
+
+.mapaClima {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    box-shadow: -15px -10px 0 0 rgba(0, 0, 0, .1) inset, -30px -15px 0 0 rgba(0, 0, 0, .1) inset, 5px 5px 0 0 rgba(255, 255, 255, .2) inset, 0px 5px 15px #888;
+    ;
+    background-image: url('../../assets/mapamundi.jpg');
+    background-size: cover;
+    background-repeat: none;
+    animation: tierra-girando 20s infinite linear;
+}
+
+@keyframes tierra-girando {
+    0% {
+        background-position: left center;
+    }
+    100% {
+        background-position: -900px center;
+    }
+}
+
+.mapaClima .nubes {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    color: white;
+    animation: nubes-moviendo 2s infinite linear;
+    animation-direction: alternate-reverse;
+}
+
+.mapaClima .nubes img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 25%;
+}
+
+@keyframes nubes-moviendo {
+    from {
+        margin-left: -12px;
+    }
+    to {
+        margin-left: 55px;
+    }
+}
+
+.informacion {
+    background-image: url('https://i0.wp.com/images.designtrends.com/wp-content/uploads/2015/11/15044444/Dark-Grey-Pattern-Background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.informacion .cartas .contenido .icono {
+    height: 125px;
+}
+
+::ng-deep .informacino .cartas .contenido .tituloCarta {
+    height: 125px;
+}
+
+.informacion h2 {
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.mat-card {
+    width: 300px;
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 5px #000000;
+    /* background: rgb(115, 125, 233);
+    background: linear-gradient(180deg, rgba(115, 125, 233, 1) 0%, rgba(54, 73, 106, 1) 60%, rgba(19, 19, 20, 1) 100%); */
+    background: rgb(76, 137, 189);
+    background: linear-gradient(343deg, rgba(76, 137, 189, 1) 0%, rgba(35, 74, 108, 1) 52%, rgba(19, 19, 20, 1) 100%);
+}
+
+h4 {
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.tituloCartas {
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
