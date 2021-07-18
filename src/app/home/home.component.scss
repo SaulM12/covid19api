@@ -1,6 +1,31 @@
-.bordes{
+.bordes {
     margin: 0.5rem;
 }
+
 #map {
     height: 100%;
-  }
+}
+
+.container {
+    position: relative;
+}
+
+.home button {
+    position: absolute;
+    border-radius: 0px 50px 50px 0!important;
+    font-size: 70px;
+    width: 50px;
+    height: 50px;
+    left: 0%;
+    top: 50%;
+    cursor: pointer;
+    border-color: white;
+}
+
+.home button:hover {
+    background-color: rgb(59, 128, 160);
+    mat-icon {
+        color: white;
+    }
+    border-color: rgb(59, 128, 160);
+}
